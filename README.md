@@ -293,6 +293,42 @@ each field's container, so **give every field container an explicit height** via
 the examples above, e.g. Tailwind's `h-9`) — an unstyled container collapses to zero height and
 the field disappears.
 
+### Styling the container like a native input
+
+Each field also accepts an inline **`style`** prop (a pass-through to the container `<div>`) — useful
+for a runtime-resolved value like a theme surface colour that can't live in a static class.
+
+Braintree's `styles` whitelist has **no `background`**, so to give the input a solid fill you paint it
+in two places that must match: the container (`class`/`style` background) and the iframe input via the
+one whitelisted property that actually paints — an opaque inset `box-shadow`:
+
+```svelte
+<script lang="ts">
+	import { HostedFields, CardNumber, ExpirationDate, Cvv } from 'sveltekit-braintree'
+	const surface = '#ffffff' // your resolved input background
+	const styles = {
+		input: {
+			'box-shadow': `inset 0 0 0 1000px ${surface}`,
+			'-webkit-box-shadow': `inset 0 0 0 1000px ${surface}`,
+			'font-size': '14px',
+			color: '#0a0a0a',
+			'-webkit-text-fill-color': '#0a0a0a'
+		},
+		'::placeholder': { color: '#71717a' }
+	}
+	const box = 'h-9 rounded-md border px-3'
+</script>
+
+<HostedFields authorization={clientToken} {styles}>
+	<CardNumber class={box} style="background: {surface}" />
+	<ExpirationDate class={box} style="background: {surface}" />
+	<Cvv class={box} style="background: {surface}" />
+</HostedFields>
+```
+
+(`-webkit-text-fill-color` keeps the typed text visible over the shadow — the same trick that defeats
+the yellow autofill background.)
+
 ## Vaulting
 
 To store a tokenized payment method against a customer for reuse (saved cards), pass

@@ -1,95 +1,95 @@
 {
-  "name": "sveltekit-braintree",
-  "version": "0.1.0",
-  "description": "SvelteKit library for Braintree Hosted Fields and 3D Secure.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pevey/sveltekit-braintree.git"
-  },
-  "author": "Lacey Pevey",
-  "license": "MIT",
-  "keywords": [
-    "svelte",
-    "sveltekit",
-    "braintree",
-    "hosted fields",
-    "3d secure",
-    "payment",
-    "payments",
-    "checkout",
-    "ecommerce"
-  ],
-  "type": "module",
-  "files": [
-    "dist",
-    "!dist/**/*.test.*",
-    "!dist/**/*.spec.*"
-  ],
-  "svelte": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "svelte": "./dist/index.js"
-    },
-    "./HostedFields.svelte": {
-      "types": "./dist/HostedFields.svelte.d.ts",
-      "svelte": "./dist/HostedFields.svelte"
-    },
-    "./CardNumber.svelte": {
-      "types": "./dist/CardNumber.svelte.d.ts",
-      "svelte": "./dist/CardNumber.svelte"
-    },
-    "./ExpirationDate.svelte": {
-      "types": "./dist/ExpirationDate.svelte.d.ts",
-      "svelte": "./dist/ExpirationDate.svelte"
-    },
-    "./Cvv.svelte": {
-      "types": "./dist/Cvv.svelte.d.ts",
-      "svelte": "./dist/Cvv.svelte"
-    },
-    "./PostalCode.svelte": {
-      "types": "./dist/PostalCode.svelte.d.ts",
-      "svelte": "./dist/PostalCode.svelte"
-    },
-    "./server": {
-      "types": "./dist/server/index.d.ts",
-      "svelte": "./dist/server/index.js",
-      "default": "./dist/server/index.js"
-    }
-  },
-  "scripts": {
-    "build": "svelte-kit sync && svelte-package && publint",
-    "prepublishOnly": "npm run build",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "lint": "svelte-check --tsconfig ./tsconfig.json",
-    "test:unit": "vitest run"
-  },
-  "peerDependencies": {
-    "@sveltejs/kit": "^2.22.0 || ^3.0.0-next.0",
-    "braintree": "^3.38.0",
-    "braintree-web": "^3.143.0",
-    "svelte": "^5.36.0"
-  },
-  "peerDependenciesMeta": {
-    "braintree": {
-      "optional": true
-    }
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-auto": "8.0.0-next.1",
-    "@sveltejs/kit": "3.0.0-next.10",
-    "@sveltejs/package": "3.0.0-next.3",
-    "@sveltejs/vite-plugin-svelte": "^7.2.0",
-    "@types/braintree": "3.4.4",
-    "@types/braintree-web": "3.96.17",
-    "braintree": "3.38.0",
-    "braintree-web": "3.143.0",
-    "publint": "^0.3.21",
-    "svelte": "^5.56.6",
-    "svelte-check": "^4.7.3",
-    "typescript": "6.0.3",
-    "vite": "8.1.5",
-    "vitest": "4.1.10"
-  }
+	"name": "sveltekit-braintree",
+	"version": "0.9.0",
+	"description": "SvelteKit library for Braintree Hosted Fields and 3D Secure.",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pevey/sveltekit-braintree.git"
+	},
+	"author": "Lacey Pevey",
+	"license": "MIT",
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"braintree",
+		"hosted fields",
+		"3d secure",
+		"payment",
+		"payments",
+		"checkout",
+		"ecommerce"
+	],
+	"type": "module",
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		},
+		"./HostedFields.svelte": {
+			"types": "./dist/HostedFields.svelte.d.ts",
+			"svelte": "./dist/HostedFields.svelte"
+		},
+		"./CardNumber.svelte": {
+			"types": "./dist/CardNumber.svelte.d.ts",
+			"svelte": "./dist/CardNumber.svelte"
+		},
+		"./ExpirationDate.svelte": {
+			"types": "./dist/ExpirationDate.svelte.d.ts",
+			"svelte": "./dist/ExpirationDate.svelte"
+		},
+		"./Cvv.svelte": {
+			"types": "./dist/Cvv.svelte.d.ts",
+			"svelte": "./dist/Cvv.svelte"
+		},
+		"./PostalCode.svelte": {
+			"types": "./dist/PostalCode.svelte.d.ts",
+			"svelte": "./dist/PostalCode.svelte"
+		},
+		"./server": {
+			"types": "./dist/server/index.d.ts",
+			"svelte": "./dist/server/index.js",
+			"default": "./dist/server/index.js"
+		}
+	},
+	"scripts": {
+		"build": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run build",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"lint": "svelte-check --tsconfig ./tsconfig.json",
+		"test:unit": "vitest run"
+	},
+	"peerDependencies": {
+		"@sveltejs/kit": "^2.22.0 || ^3.0.0-next.0",
+		"braintree": "^3.38.0",
+		"braintree-web": "^3.143.0",
+		"svelte": "^5.36.0"
+	},
+	"peerDependenciesMeta": {
+		"braintree": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "8.0.0-next.1",
+		"@sveltejs/kit": "3.0.0-next.10",
+		"@sveltejs/package": "3.0.0-next.3",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@types/braintree": "3.4.4",
+		"@types/braintree-web": "3.96.17",
+		"braintree": "3.38.0",
+		"braintree-web": "3.143.0",
+		"publint": "^0.3.21",
+		"svelte": "^5.56.6",
+		"svelte-check": "^4.7.3",
+		"typescript": "6.0.3",
+		"vite": "8.1.5",
+		"vitest": "4.1.10"
+	}
 }

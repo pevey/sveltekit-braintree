@@ -36,7 +36,7 @@ BRAINTREE_PRIVATE_KEY=your_private_key
 `environment` is one of `'sandbox' | 'production' | 'development' | 'qa'`. These four values map directly to `braintree.Environment`. Keep the public/private key pair and merchant ID out of client code — they only ever get used server-side, to build a `BraintreeGateway` and issue
 short-lived client tokens to the browser.
 
-## Server: issue a client token
+## Server: Issue a client token
 
 Every Hosted Fields session starts with a **client token** — a short-lived credential your server generates and hands to the page. Build a `BraintreeGateway` once and reuse it:
 
@@ -123,7 +123,7 @@ Notes:
 - Render at most one of each field type per `<HostedFields>` — `CardNumber` maps to Braintree's `number` field, and a second instance would just overwrite the first in the fields map Hosted Fields is created with.
 - `onerror` catches failures during client/Hosted Fields/3D Secure/device-data setup (bad authorization, network errors, etc.) — always handle it in a real integration.
 
-## Server: create the transaction
+## Server: Create the transaction
 
 Your endpoint receives the `nonce` (and `deviceData`, if you collected it) and hands it to `createTransaction`, which submits a `transaction.sale` against the Braintree gateway:
 
@@ -224,7 +224,7 @@ Two separate knobs style two separate things:
 
 - **`class`** — a regular CSS class, settable on both `<HostedFields>` (the outer wrapping `<div>` around all fields) and on each field component (each field's own container `<div>`). This is normal, same-origin CSS, so use it for layout, borders, background, spacing, focus rings on the container, etc.
 
-One gotcha specific to Hosted Fields: Braintree injects an `<iframe>` with `height: 100%` into each field's container, so **give every field container an explicit height** via `class` (as in the examples above, e.g. Tailwind's `h-9`) — an unstyled container collapses to zero height and the field disappears.
+Braintree injects an `<iframe>` with `height: 100%` into each field's container, so **give every field container an explicit height** via `class` (as in the examples above, e.g. Tailwind's `h-9`) — an unstyled container collapses to zero height and the field disappears.
 
 ### Styling the container like a native input
 

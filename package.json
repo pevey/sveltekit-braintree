@@ -1,6 +1,6 @@
 {
 	"name": "sveltekit-braintree",
-	"version": "0.9.0",
+	"version": "1.0.0",
 	"description": "SvelteKit library for Braintree Hosted Fields and 3D Secure.",
 	"repository": {
 		"type": "git",

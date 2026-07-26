@@ -6,6 +6,7 @@
 		"type": "git",
 		"url": "git+https://github.com/pevey/sveltekit-braintree.git"
 	},
+	"homepage": "https://pevey.com/sveltekit-braintree",
 	"author": "Lacey Pevey",
 	"license": "MIT",
 	"keywords": [

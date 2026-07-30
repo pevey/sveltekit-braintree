@@ -22,7 +22,13 @@ export interface TokenizeOptions {
 
 export interface TokenizeResult {
 	nonce: string
-	details: { bin?: string; cardType?: string; lastFour?: string; lastTwo?: string; [k: string]: unknown }
+	details: {
+		bin?: string
+		cardType?: string
+		lastFour?: string
+		lastTwo?: string
+		[k: string]: unknown
+	}
 }
 
 export interface VerifyCardOptions {
@@ -58,7 +64,10 @@ export type HostedFieldsInstance = {
 }
 export type ThreeDSecureInstance = {
 	verifyCard(options: Record<string, unknown>): Promise<{
-		nonce: string; liabilityShifted: boolean; liabilityShiftPossible: boolean; threeDSecureInfo?: unknown
+		nonce: string
+		liabilityShifted: boolean
+		liabilityShiftPossible: boolean
+		threeDSecureInfo?: unknown
 	}>
 	teardown?(): Promise<void> | void
 }

@@ -17,9 +17,7 @@ const ENV_MAP: Record<string, braintree.Environment> = {
 export function createBraintreeGateway(creds: BraintreeCredentials): braintree.BraintreeGateway {
 	const environment = ENV_MAP[creds.environment?.toLowerCase?.()]
 	if (!environment) {
-		throw new Error(
-			`Invalid Braintree environment "${creds.environment}". Must be one of: ${Object.keys(ENV_MAP).join(', ')}`
-		)
+		throw new Error(`Invalid Braintree environment "${creds.environment}". Must be one of: ${Object.keys(ENV_MAP).join(', ')}`)
 	}
 	return new braintree.BraintreeGateway({
 		environment,
@@ -29,10 +27,7 @@ export function createBraintreeGateway(creds: BraintreeCredentials): braintree.B
 	})
 }
 
-export async function generateClientToken(
-	gateway: braintree.BraintreeGateway,
-	options: Record<string, unknown> = {}
-): Promise<string> {
+export async function generateClientToken(gateway: braintree.BraintreeGateway, options: Record<string, unknown> = {}): Promise<string> {
 	const { clientToken } = await gateway.clientToken.generate(options)
 	return clientToken
 }
@@ -51,7 +46,11 @@ export interface CreateTransactionParams {
 /** Pure builder for `transaction.sale` params — separated for unit testing. */
 export function buildTransactionRequest(params: CreateTransactionParams): Record<string, unknown> {
 	const { amount, nonce, deviceData, submitForSettlement, threeDSecure, merchantAccountId, options, ...rest } = params
-	const request: Record<string, unknown> = { amount: String(amount), paymentMethodNonce: nonce, ...rest }
+	const request: Record<string, unknown> = {
+		amount: String(amount),
+		paymentMethodNonce: nonce,
+		...rest
+	}
 	if (deviceData) request.deviceData = deviceData
 	if (merchantAccountId) request.merchantAccountId = merchantAccountId
 	const opts: Record<string, unknown> = { ...(options ?? {}) }
@@ -70,9 +69,7 @@ export function findTransaction(gateway: braintree.BraintreeGateway, id: string)
 }
 
 export function submitForSettlement(gateway: braintree.BraintreeGateway, id: string, amount?: string | number) {
-	return amount == null
-		? gateway.transaction.submitForSettlement(id)
-		: gateway.transaction.submitForSettlement(id, String(amount))
+	return amount == null ? gateway.transaction.submitForSettlement(id) : gateway.transaction.submitForSettlement(id, String(amount))
 }
 
 export function voidTransaction(gateway: braintree.BraintreeGateway, id: string) {
@@ -83,9 +80,6 @@ export function refundTransaction(gateway: braintree.BraintreeGateway, id: strin
 	return amount == null ? gateway.transaction.refund(id) : gateway.transaction.refund(id, String(amount))
 }
 
-export function parseWebhook(
-	gateway: braintree.BraintreeGateway,
-	{ signature, payload }: { signature: string; payload: string }
-) {
+export function parseWebhook(gateway: braintree.BraintreeGateway, { signature, payload }: { signature: string; payload: string }) {
 	return gateway.webhookNotification.parse(signature, payload)
 }

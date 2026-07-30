@@ -85,10 +85,10 @@
 		"@types/braintree": "3.4.4",
 		"@types/braintree-web": "3.96.17",
 		"braintree": "3.38.0",
-		"braintree-web": "3.143.0",
+		"braintree-web": "3.144.0",
 		"publint": "^0.3.22",
 		"svelte": "^5.56.8",
-		"svelte-check": "^4.7.3",
+		"svelte-check": "^4.7.4",
 		"typescript": "6.0.3",
 		"vite": "8.1.5",
 		"vitest": "4.1.10"

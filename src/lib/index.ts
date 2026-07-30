@@ -7,8 +7,16 @@ export { getBraintreeContext, setBraintreeContext } from './context.js'
 export { tokenizeCard, verifyCard, tokenize } from './tokenize.js'
 export { collectDeviceData } from './device-data.js'
 export type {
-	BraintreeContext, HostedFieldType, BraintreeBillingAddress,
-	TokenizeOptions, TokenizeResult, VerifyCardOptions, VerifyCardResult,
-	CombinedTokenizeOptions, CombinedTokenizeResult,
-	BraintreeClient, HostedFieldsInstance, ThreeDSecureInstance
+	BraintreeContext,
+	HostedFieldType,
+	BraintreeBillingAddress,
+	TokenizeOptions,
+	TokenizeResult,
+	VerifyCardOptions,
+	VerifyCardResult,
+	CombinedTokenizeOptions,
+	CombinedTokenizeResult,
+	BraintreeClient,
+	HostedFieldsInstance,
+	ThreeDSecureInstance
 } from './types.js'

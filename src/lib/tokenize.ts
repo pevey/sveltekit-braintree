@@ -1,22 +1,22 @@
 import type {
-	BraintreeContext, HostedFieldsInstance, ThreeDSecureInstance,
-	TokenizeOptions, TokenizeResult, VerifyCardOptions, VerifyCardResult,
-	CombinedTokenizeOptions, CombinedTokenizeResult
+	BraintreeContext,
+	HostedFieldsInstance,
+	ThreeDSecureInstance,
+	TokenizeOptions,
+	TokenizeResult,
+	VerifyCardOptions,
+	VerifyCardResult,
+	CombinedTokenizeOptions,
+	CombinedTokenizeResult
 } from './types.js'
 
 /** Tokenize the entered card via Hosted Fields → single-use nonce (+ card details incl. bin). */
-export async function tokenizeCard(
-	hostedFields: HostedFieldsInstance,
-	options: TokenizeOptions = {}
-): Promise<TokenizeResult> {
+export async function tokenizeCard(hostedFields: HostedFieldsInstance, options: TokenizeOptions = {}): Promise<TokenizeResult> {
 	return (await hostedFields.tokenize(options as Record<string, unknown>)) as unknown as TokenizeResult
 }
 
 /** Run the 3-D Secure 2 challenge for a nonce; returns the verified nonce + liability shift. */
-export async function verifyCard(
-	threeDSecure: ThreeDSecureInstance,
-	options: VerifyCardOptions
-): Promise<VerifyCardResult> {
+export async function verifyCard(threeDSecure: ThreeDSecureInstance, options: VerifyCardOptions): Promise<VerifyCardResult> {
 	const { amount, ...rest } = options
 	return (await threeDSecure.verifyCard({
 		amount: String(amount),
@@ -26,10 +26,7 @@ export async function verifyCard(
 }
 
 /** Happy-path: tokenize → (if 3DS enabled and `amount` given) verify → attach the provider's deviceData. */
-export async function tokenize(
-	ctx: BraintreeContext,
-	options: CombinedTokenizeOptions = {}
-): Promise<CombinedTokenizeResult> {
+export async function tokenize(ctx: BraintreeContext, options: CombinedTokenizeOptions = {}): Promise<CombinedTokenizeResult> {
 	if (!ctx.hostedFields) throw new Error('Braintree hosted fields are not ready')
 	const { amount, ...tokenizeOpts } = options
 	const { nonce, details } = await tokenizeCard(ctx.hostedFields, tokenizeOpts)

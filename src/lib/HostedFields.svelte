@@ -15,16 +15,7 @@
 		class?: string
 		children?: Snippet
 	}
-	let {
-		authorization,
-		styles,
-		threeDSecure = false,
-		collectDeviceData = true,
-		onready,
-		onerror,
-		class: className = '',
-		children
-	}: Props = $props()
+	let { authorization, styles, threeDSecure = false, collectDeviceData = true, onready, onerror, class: className = '', children }: Props = $props()
 
 	const registry: { type: HostedFieldType; container: HTMLElement; placeholder?: string }[] = []
 
@@ -37,12 +28,24 @@
 	// Reactive-getter context (SSR-safe, no $effect). Children register their bound container in their
 	// OWN onMount (runs before this component's onMount), so `registry` is complete when we create.
 	const ctx: BraintreeContext = {
-		get client() { return client },
-		get hostedFields() { return hostedFields as BraintreeContext['hostedFields'] },
-		get threeDSecure() { return three as BraintreeContext['threeDSecure'] },
-		get deviceData() { return deviceData },
-		get ready() { return ready },
-		registerField(entry) { registry.push(entry) }
+		get client() {
+			return client
+		},
+		get hostedFields() {
+			return hostedFields as BraintreeContext['hostedFields']
+		},
+		get threeDSecure() {
+			return three as BraintreeContext['threeDSecure']
+		},
+		get deviceData() {
+			return deviceData
+		},
+		get ready() {
+			return ready
+		},
+		registerField(entry) {
+			registry.push(entry)
+		}
 	}
 	setBraintreeContext(ctx)
 
@@ -65,8 +68,16 @@
 	})
 
 	onDestroy(() => {
-		try { (hostedFields as { teardown?: () => void } | null)?.teardown?.() } catch { /* ignore */ }
-		try { (three as { teardown?: () => void } | null)?.teardown?.() } catch { /* ignore */ }
+		try {
+			;(hostedFields as { teardown?: () => void } | null)?.teardown?.()
+		} catch {
+			/* ignore */
+		}
+		try {
+			;(three as { teardown?: () => void } | null)?.teardown?.()
+		} catch {
+			/* ignore */
+		}
 	})
 </script>
 

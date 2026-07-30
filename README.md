@@ -44,12 +44,7 @@ Every Hosted Fields session starts with a **client token** — a short-lived cre
 
 ```ts
 import { createBraintreeGateway } from 'sveltekit-braintree/server'
-import {
-	BRAINTREE_ENVIRONMENT,
-	BRAINTREE_MERCHANT_ID,
-	BRAINTREE_PUBLIC_KEY,
-	BRAINTREE_PRIVATE_KEY
-} from '$env/static/private'
+import { BRAINTREE_ENVIRONMENT, BRAINTREE_MERCHANT_ID, BRAINTREE_PUBLIC_KEY, BRAINTREE_PRIVATE_KEY } from '$env/static/private'
 
 export const gateway = createBraintreeGateway({
 	environment: BRAINTREE_ENVIRONMENT as 'sandbox' | 'production',
@@ -107,7 +102,7 @@ Generate a fresh client token per checkout session rather than caching one — l
 	}
 </script>
 
-<HostedFields authorization={data.clientToken} onready={(c) => (ctx = c)}>
+<HostedFields authorization={data.clientToken} onready={c => (ctx = c)}>
 	<CardNumber class="h-9 rounded-md border px-3" placeholder="4111 1111 1111 1111" />
 	<ExpirationDate class="h-9 rounded-md border px-3" placeholder="MM/YY" />
 	<Cvv class="h-9 rounded-md border px-3" placeholder="CVV" />
@@ -173,7 +168,7 @@ Once you have a transaction you can also `findTransaction(gateway, id)`, `submit
 **Client** — set `threeDSecure` on the provider, and pass an `amount` to `tokenize()` (the challenge needs to know the amount to show the cardholder):
 
 ```svelte
-<HostedFields authorization={data.clientToken} threeDSecure onready={(c) => (ctx = c)}>
+<HostedFields authorization={data.clientToken} threeDSecure onready={c => (ctx = c)}>
 	<!-- fields -->
 </HostedFields>
 ```
@@ -216,7 +211,7 @@ Two separate knobs style two separate things:
 		'input.invalid': { color: '#dc2626' },
 		':focus': { color: '#1a1a1a' }
 	}}
-	onready={(c) => (ctx = c)}
+	onready={c => (ctx = c)}
 >
 	<CardNumber class="h-9 rounded-md border px-3" />
 </HostedFields>
@@ -280,7 +275,7 @@ Without a `customerId` on the client token, `vault: true` tokenizes for one-time
 Braintree's fraud engine (Kount) uses a device fingerprint collected in the browser. The provider collects this for you by default:
 
 ```svelte
-<HostedFields authorization={data.clientToken} onready={(c) => (ctx = c)}>
+<HostedFields authorization={data.clientToken} onready={c => (ctx = c)}>
 	<!-- collectDeviceData defaults to true; ctx.deviceData is populated once ready -->
 </HostedFields>
 ```

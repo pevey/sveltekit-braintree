@@ -33,8 +33,7 @@ BRAINTREE_PUBLIC_KEY=your_public_key
 BRAINTREE_PRIVATE_KEY=your_private_key
 ```
 
-`environment` is one of `'sandbox' | 'production' | 'development' | 'qa'`. These four values map directly to `braintree.Environment`. Keep the public/private key pair and merchant ID out of client code — they only ever get used server-side, to build a `BraintreeGateway` and issue
-short-lived client tokens to the browser.
+`environment` is one of `'sandbox' | 'production' | 'development' | 'qa'`. These four values map directly to `braintree.Environment`. Keep the public/private key pair and merchant ID out of client code — they only ever get used server-side, to build a `BraintreeGateway` and issue short-lived client tokens to the browser.
 
 ## Server: Issue a client token
 
@@ -180,8 +179,7 @@ if (liabilityShifted === false) {
 }
 ```
 
-Internally, `tokenize()` calls `tokenizeCard()` to get a nonce from Hosted Fields, then — only if `ctx.threeDSecure` exists (the provider was given `threeDSecure`) _and_ you passed `amount` — runs `verifyCard()` against that nonce and swaps in the verified nonce. If you don't pass `amount`, or
-the provider wasn't given `threeDSecure`, `tokenize()` silently skips the challenge and returns the plain Hosted Fields nonce.
+Internally, `tokenize()` calls `tokenizeCard()` to get a nonce from Hosted Fields, then — only if `ctx.threeDSecure` exists (the provider was given `threeDSecure`) _and_ you passed `amount` — runs `verifyCard()` against that nonce and swaps in the verified nonce. If you don't pass `amount`, or the provider wasn't given `threeDSecure`, `tokenize()` silently skips the challenge and returns the plain Hosted Fields nonce.
 
 **Server** — set `threeDSecure: true` on `createTransaction` to _enforce_ the shift rather than just observe it:
 
@@ -251,8 +249,7 @@ Braintree's `styles` whitelist has **no `background`**, so to give the input a s
 </HostedFields>
 ```
 
-(`-webkit-text-fill-color` keeps the typed text visible over the shadow — the same trick that defeats
-the yellow autofill background.)
+(`-webkit-text-fill-color` keeps the typed text visible over the shadow — the same trick that defeats the yellow autofill background.)
 
 ## Vaulting
 
